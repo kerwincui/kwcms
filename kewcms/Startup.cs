@@ -22,8 +22,10 @@ namespace kewcms {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContextPool<ApplicationDbContext>(options => 
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => {
                     // 配置身份选项
