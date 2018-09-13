@@ -2,105 +2,591 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/js/jquery.min.js"></script>
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="~/js/move-top.js"></script>
+    <script type="text/javascript" src="~/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+            });
+        });
+    </script>
+    <!---- start-smoth-scrolling---->
+    <!-- Custom Theme files -->
+    <link href="css/theme-style.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    </script>
+    <!----webfonts---->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!----//webfonts---->
+    <!----start-top-nav-script---->
+    <script>
+        $(function () {
+            var pull = $('#pull');
+            menu = $('nav ul');
+            menuHeight = menu.height();
+            $(pull).on('click', function (e) {
+                e.preventDefault();
+                menu.slideToggle();
+            });
+            $(window).resize(function () {
+                var w = $(window).width();
+                if (w > 320 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                }
+            });
+        });
+    </script>
+    <!----//End-top-nav-script---->
+</head>
+<body>
+    <!-----start-container----->
+    <!----- start-header---->
+    <div id="home" class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="#"><img src="~/images/logo.png" title="logo" /></a>
             </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
+            <!----start-top-nav---->
+            <nav class="top-nav">
+                <ul class="top-nav">
+                    <li class="active"><a href="#home" class="scroll">Home <span> </span></a></li>
+                    <li class="page-scroll"><a href="#ser" class="scroll">Services <span> </span></a></li>
+                    <li class="page-scroll"><a href="#about" class="scroll">About us <span> </span></a></li>
+                    <li class="page-scroll"><a href="#port" class="scroll">Portfolio <span> </span></a></li>
+                    <li class="page-scroll"><a href="#team" class="scroll">Team<span> </span></a></li>
+                    <li class="contatct-active" class="page-scroll"><a href="#contact" class="scroll">Contact us </a></li>
+                </ul>
+                <a href="#" id="pull"><img src="~/images/nav-icon.png" title="menu" /></a>
+            </nav>
+            <div class="clearfix"> </div>
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+    <!----- //End-header---->
+    <!----- start-slider---->
+    <!----start-slider-script---->
+    <script src="~/js/responsiveslides.min.js"></script>
+    <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+            // Slideshow 4
+            $("#slider4").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
+        });
+    </script>
+    <!----//End-slider-script---->
+    <!-- Slideshow 4 -->
+    <div id="top" class="callbacks_container">
+        <ul class="rslides" id="slider4">
+            <li>
+                <img src="~/images/slide.jpg" alt="">
+                <div class="caption text-center">
+                    <div class="slide-text-info">
+                        <a class="btn1" href="#"><span>Hello world</span></a>
+                        <h1>We Are A <span>Creative</span> Agency</h1>
+                        <div class="slide-text">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                        </div>
+                        <a class="btn2" href="#"><span>view now</span></a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img src="~/images/slide.jpg" alt="">
+                <div class="caption text-center">
+                    <div class="slide-text-info">
+                        <a class="btn1" href="#"><span>Hello world</span></a>
+                        <h1>Lorem <span> dolor </span> consec</h1>
+                        <div class="slide-text">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                        </div>
+                        <a class="btn2" href="#"><span>view now</span></a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <img src="~/images/slide.jpg" alt="">
+                <div class="caption text-center">
+                    <div class="slide-text-info">
+                        <a class="btn1" href="#"><span>Hello world</span></a>
+                        <h1>hendre <span>vulputa</span> velit</h1>
+                        <div class="slide-text">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                        </div>
+                        <a class="btn2" href="#"><span>view now</span></a>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
+    <div class="clearfix"> </div>
+    <!----- //End-slider---->
+    <!----start-services---->
+    <div id="ser" class="services">
+        <div class="container">
+            <div class="services-head text-center">
+                <h3>Our Workflow</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+            </div>
+            <!-----start-services-grids---->
+            <div class="services-grids">
+                <div class="col-md-4 services-grid">
+                    <div class="col-md-3 services-grid-left">
+                        <a class="top-icon1" href="#"><span> </span></a>
+                    </div>
+                    <div class="col-md-9 services-grid-right">
+                        <h4><a href="#">Email Marketing</a></h4>
+                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-4 services-grid">
+                    <div class="col-md-3 services-grid-left">
+                        <a class="top-icon2" href="#"><span> </span></a>
+                    </div>
+                    <div class="col-md-9 services-grid-right">
+                        <h4><a href="#">Graphic Design</a></h4>
+                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-4 services-grid">
+                    <div class="col-md-3 services-grid-left">
+                        <a class="top-icon3" href="#"><span> </span></a>
+                    </div>
+                    <div class="col-md-9 services-grid-right">
+                        <h4><a href="#">Web Design</a></h4>
+                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-4 services-grid">
+                    <div class="col-md-3 services-grid-left">
+                        <a class="top-icon4" href="#"><span> </span></a>
+                    </div>
+                    <div class="col-md-9 services-grid-right">
+                        <h4><a href="#">Print</a></h4>
+                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-4 services-grid">
+                    <div class="col-md-3 services-grid-left">
+                        <a class="top-icon5" href="#"><span> </span></a>
+                    </div>
+                    <div class="col-md-9 services-grid-right">
+                        <h4><a href="#">Hosting</a></h4>
+                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-4 services-grid">
+                    <div class="col-md-3 services-grid-left">
+                        <a class="top-icon6" href="#"><span> </span></a>
+                    </div>
+                    <div class="col-md-9 services-grid-right">
+                        <h4><a href="#">Email Marketing</a></h4>
+                        <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
+    <!----//End-services---->
+    <!-----//End-services-grids---->
+    <!---- start-about----->
+    <div id="about" class="about">
+        <div class="container">
+            <div class="about-head">
+                <h4>About us</h4>
+                <h5>Take Controal of you Content!</h5>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...""There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
+            </div>
+            <!----- start-about-grids----->
+            <div class="about-grids">
+                <div class="col-md-7 about-grid-left">
+                    <span> </span>
+                </div>
+                <div class="col-md-5 about-grid-right">
+                    <h5>What we do?</h5>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                    <h6>Our history</h6>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                    <a class="about-btn" href="#">view now</a>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <!----- //End-about-grids----->
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+    <!---- //End-about----->
+    <div class="tlinks">Collect from <a href="http://www.cssmoban.com/">企业网站模板</a></div>
+    <!-----start-portfolio---->
+    <div id="port" class="portfolio-box-main">
+        <div class="container">
+            <div class="portfolio-head text-center">
+                <h3>Portfolio</h3>
+                <span>The work we have done so far for our awesome clients</span>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...""There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
+            </div>
+        </div>
+        <!----start-portfolio----->
+        <div class="portfolio portfolio-box">
+            <!----start-portfolio---->
+            <div class="portfolio-main">
+                <!---- start-portfolio-script----->
+                <script type="text/javascript" src="~/js/jquery.mixitup.min.js"></script>
+                <script type="text/javascript">
+                    $(function () {
+                        var filterList = {
+                            init: function () {
+
+                                // MixItUp plugin
+                                // http://mixitup.io
+                                $('#portfoliolist').mixitup({
+                                    targetSelector: '.portfolio',
+                                    filterSelector: '.filter',
+                                    effects: ['fade'],
+                                    easing: 'snap',
+                                    // call the hover effect
+                                    onMixEnd: filterList.hoverEffect()
+                                });
+
+                            },
+                            hoverEffect: function () {
+                                // Simple parallax effect
+                                $('#portfoliolist .portfolio').hover(
+                                    function () {
+                                        $(this).find('.label').stop().animate({ bottom: 0 }, 200, 'easeOutQuad');
+                                        $(this).find('img').stop().animate({ top: -30 }, 500, 'easeOutQuad');
+                                    },
+                                    function () {
+                                        $(this).find('.label').stop().animate({ bottom: -40 }, 200, 'easeInQuad');
+                                        $(this).find('img').stop().animate({ top: 0 }, 300, 'easeOutQuad');
+                                    }
+                                );
+
+                            }
+
+                        };
+                        // Run the show!
+                        filterList.init();
+                    });
+                </script>
+                <!----//End-portfolio-script----->
+                <ul id="filters" class="clearfix">
+                    <li><span class="filter" data-filter="app card icon logo web">All</span> |</li>
+                    <li><span class="filter  active" data-filter="app">Photography</span> |</li>
+                    <li><span class="filter" data-filter="card">video</span> |</li>
+                    <li><span class="filter" data-filter="icon">graphics</span> |</li>
+                    <li><span class="filter" data-filter="app">branding</span> |</li>
+                    <li><span class="filter" data-filter="app">web sites</span></li>
+                </ul>
+                <div id="portfoliolist">
+                    <div class="portfolio logo1 mix_all" data-cat="logo" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p1.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p2.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio web mix_all" data-cat="web" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p3.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio icon mix_all" data-cat="icon" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p4.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p5.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p6.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio icon mix_all" data-cat="icon" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p7.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+                        <div class="portfolio-wrapper">
+                            <a data-toggle="modal" data-target=".bs-example-modal-md" href="#" class="b-link-stripe b-animate-go  thickbox">
+                                <img class="p-img" src="~/images/p8.jpg" /><div class="b-wrapper">
+                                    <h2 class="b-animate b-from-left    b-delay03 ">
+                                        <div class="animate-head">
+                                            <div class="animate-head-left">
+                                                <h3>Duis nec congue</h3>
+                                                <span>Neque porro quisquam est qui dolorem </span>
+                                            </div>
+                                            <div class="animate-head-right">
+                                                <span><i class="fa fa-search-plus"> </i></span>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                    <a class="more-ports text-center" href="#"><span> </span></a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
     </div>
-</div>
+    <!----//End-portfolio---->
+    <!----start-team----->
+    <div id="team" class="team">
+        <div class="container">
+            <div class="team-head text-center">
+                <h3>Our Team members</h3>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...""There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
+            </div>
+            <div class="team-members-grids text-center">
+                <div class="col-md-4 team-member-grid">
+                    <img src="~/images/team-member-pic.jpg" title="name" />
+                    <h5><a href="#">Dr. Brown</a></h5>
+                    <span>CEO</span>
+                    <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"> </i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"> </i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 team-member-grid">
+                    <img src="~/images/team-member-pic.jpg" title="name" />
+                    <h5><a href="#">Dr. Brown</a></h5>
+                    <span>The Boss</span>
+                    <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"> </i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"> </i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 team-member-grid">
+                    <img src="~/images/team-member-pic.jpg" title="name" />
+                    <h5><a href="#">Dr. Brown</a></h5>
+                    <span>Account Director</span>
+                    <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</p>
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="#"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"> </i></a></li>
+                        <li><a href="#"><i class="fa fa-skype"> </i></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!----//End-team----->
+    <!----start-contact---->
+    <div id="contact" class="contact">
+        <div class="container">
+            <div class="contact-head text-center">
+                <h3>Contact us</h3>
+                <span>The work we have done so far for our awesome clients</span>
+                <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...""There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</p>
+            </div>
+            <div class="contact-grids">
+                <div class="col-md-7 contact-left">
+                    <h4>Sent mail</h4>
+                    <form>
+                        <input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
+                        <input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+                        <input type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}">
+                        <textarea onfocus="if(this.value == 'Message ') this.value='';" onblur="if(this.value == '') this.value='Message *'; ">Message </textarea>
+                        <input type="submit" value="Send Message" />
+                    </form>
+                </div>
+                <div class="col-md-5 contact-right">
+                    <h4>Contact info</h4><br />
+                    <p><span class="icon1"> </span><a href="#">info@website.com</a></p><br />
+                    <p><span class="icon2"> </span>123456789</p><br />
+                    <p><span class="icon3"> </span><label>Office no 1, main road city name- 78</label></p><br />
+                    <h4>Follow us on</h4><br />
+                    <ul class="list-unstyled list-inline">
+                        <li><a class="face" href="#"><span> </span></a></li>
+                        <li><a class="drib" href="#"><span> </span></a></li>
+                        <li><a class="twitt" href="#"><span> </span></a></li>
+                        <li><a class="sanp" href="#"><span> </span></a></li>
+                        <li><a class="gpluse" href="#"><span> </span></a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!----//End-contact---->
+    <!-----start-footer---->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-right">
+                <p>Copyright &copy; 2014.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        /*
+                        var defaults = {
+                                containerID: 'toTop', // fading element id
+                            containerHoverID: 'toTopHover', // fading element hover id
+                            scrollSpeed: 1200,
+                            easingType: 'linear'
+                            };
+                        */
+
+                        $().UItoTop({ easingType: 'easeOutQuart' });
+
+                    });
+                </script>
+                <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!-----//End-footer---->
+    <!-----//End-container----->
+
+</body>
+</html>
