@@ -1,0 +1,81 @@
+﻿@{ Layout = null;}
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="#" type="image/png">
+    <title>登录</title>
+    <link href="~/lib/adminex/css/style.css" rel="stylesheet">
+    <link href="~/lib/adminex/css/style-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="~/lib/adminex/js/html5shiv.js"></script>
+    <script src="~/lib/adminex/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="login-body">
+    <div class="container">
+        <form class="form-signin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <div class="form-signin-heading text-center">
+                <h1 class="sign-title">登 录</h1>
+                <img src="~/lib/adminex/images/login-logo.png" alt="" />
+            </div>
+            <div class="login-wrap">
+                <input type="text" asp-for="Email" class="form-control" placeholder="User ID" autofocus>
+                <span asp-validation-for="Email" class="text-danger"></span>
+
+                <input type="password" asp-for="Password" class="form-control" placeholder="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <button class="btn btn-lg btn-login btn-block" type="submit">
+                    <i class="fa fa-check"></i>
+                </button>
+                <label class="checkbox">
+                    <input type="checkbox" asp-for="RememberMe" value="remember-me"> 记住密码
+                    <span class="pull-right">
+                        <a data-toggle="modal" asp-action="ForgotPassword" asp-area="Admin"> 忘记密码?</a>
+                    </span>
+                </label>
+            </div>
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">忘记密码 ?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Enter your e-mail address below to reset your password.</p>
+                            <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                            <button class="btn btn-primary" type="button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+        </form>
+    </div>
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="~/lib/adminex/js/jquery-1.10.2.min.js"></script>
+    <script src="~/lib/adminex/js/bootstrap.min.js"></script>
+    <script src="~/lib/adminex/js/modernizr.min.js"></script>
+    @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }
+</body>
+</html>
+

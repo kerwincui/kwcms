@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using kewcms.Areas.Admin.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using kewcms.Models;
 
 namespace kewcms.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+
         }
+
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
+        public DbSet<Role> IdentityRoles { get; set; }
+        public DbSet<FriendLink> FriendLinks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

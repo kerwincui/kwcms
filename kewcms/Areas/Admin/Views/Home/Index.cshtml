@@ -1,0 +1,289 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- page heading start-->
+<div class="page-heading">
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <!--statistics start-->
+            <div class="row state-overview">
+                <div class="col-md-3 col-xs-6 col-sm-3">
+                    <div class="panel purple">
+                        <div class="symbol">
+                            <i class="fa fa-gavel"></i>
+                        </div>
+                        <div class="state-value">
+                            <div class="value">230</div>
+                            <div class="title">网站访问量</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6 col-sm-3">
+                    <div class="panel red">
+                        <div class="symbol">
+                            <i class="fa fa-tags"></i>
+                        </div>
+                        <div class="state-value">
+                            <div class="value">3490</div>
+                            <div class="title">文章数</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6 col-sm-3">
+                    <div class="panel blue">
+                        <div class="symbol">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div class="state-value">
+                            <div class="value">22014</div>
+                            <div class="title">留言</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-6 col-sm-3">
+                    <div class="panel green">
+                        <div class="symbol">
+                            <i class="fa fa-eye"></i>
+                        </div>
+                        <div class="state-value">
+                            <div class="value">390</div>
+                            <div class="title">管理员</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--statistics end-->
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row revenue-states">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h4>网站访问情况</h4>
+                            <div class="icheck">
+                                <div class="square-red single-row">
+                                    <div class="checkbox ">
+                                        <input type="checkbox" checked>
+                                        <label>在线</label>
+                                    </div>
+                                </div>
+                                <div class="square-blue single-row">
+                                    <div class="checkbox ">
+                                        <input type="checkbox">
+                                        <label>离线</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <ul class="revenue-nav">
+                                <li><a href="#">周</a></li>
+                                <li><a href="#">月</a></li>
+                                <li class="active"><a href="#">年</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="clearfix">
+                                <div id="main-chart-legend" class="pull-right">
+                                </div>
+                            </div>
+
+                            <div id="main-chart">
+                                <div id="main-chart-container" class="main-chart">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <header class="panel-heading">
+                    站点信息
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <table class="table no-border">
+                        <tbody>
+                        <tr>
+                            <td width="50"><a>网站名称</a></td>
+                            <td width="40%">Model.Name</td>
+                            <td width="50"><a>域名</a></td>
+                            <td width="35%">Model.Domain</td>
+                        </tr>
+                        <tr>
+                            <td><a>公司名称</a></td>
+                            <td>Model.Company</td>
+                            <td><a>地址</a></td>
+                            <td>Model.Address</td>
+                        </tr>
+                        <tr>
+                            <td><a>电话</a></td>
+                            <td>Model.Tel</td>
+                            <td><a>邮箱</a></td>
+                            <td>Model.Email</td>
+                        </tr>
+                        <tr>
+                            <td><a>备案号</a></td>
+                            <td>Model.Crod</td>
+                            <td><a>传真</a></td>
+                            <td>Model.Fax</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel">
+                <header class="panel-heading">
+                    服务器信息
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <table class="table no-border">
+                        <tbody>
+                        <tr>
+                            <td width="50"><a>服务器名</a></td>
+                            <td width="40%">Model.ServerName</td>
+                            <td width="50"><a>IIS版本</a></td>
+                            <td width="35%">Model.ServerIIs</td>
+                        </tr>
+                        <tr>
+                            <td><a>服务器IP</a></td>
+                            <td>Model.ServerIp</td>
+                            <td><a>服务器时间</a></td>
+                            <td>Model.ServerTime</td>
+                        </tr>
+                        <tr>
+                            <td><a>操作系统</a></td>
+                            <td>Model.ServerSystem</td>
+                            <td><a>Net版本</a></td>
+                            <td>Model.NetVersion   </td>
+                        </tr>
+                        <tr>
+                            <td><a>系统目录</a></td>
+                            <td>Model.ServerPath</td>
+                            <td><a>访问端口</a></td>
+                            <td>Model.ServerPort</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel">
+                <header class="panel-heading">
+                    文章访问量排行
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <ul class="goal-progress">
+                        <li>
+                            <div class="prog-avatar">
+                                <img src="~/lib/adminex/images/photos/user1.png" alt="" />
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    <a href="#">John Doe</a> - Project Lead
+                                </div>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                        <span class="">70%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="prog-avatar">
+                                <img src="~/lib/adminex/images/photos/user2.png" alt="" />
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    <a href="#">Cameron Doe</a> - Sales
+                                </div>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 91%">
+                                        <span class="">91%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="prog-avatar">
+                                <img src="~/lib/adminex/images/photos/user3.png" alt="" />
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    <a href="#">Hoffman Doe</a> - Support
+                                </div>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="">40%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="prog-avatar">
+                                <img src="~/lib/adminex/images/photos/user4.png" alt="" />
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    <a href="#">Jane Doe</a> - Marketing
+                                </div>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="">20%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="prog-avatar">
+                                <img src="~/lib/adminex/images/photos/user5.png" alt="" />
+                            </div>
+                            <div class="details">
+                                <div class="title">
+                                    <a href="#">Hoffman Doe</a> - Support
+                                </div>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+                                        <span class="">45%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="text-center"><a href="#">View all Goals</a></div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="calendar-block ">
+                        <div class="cal1">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--body wrapper end-->

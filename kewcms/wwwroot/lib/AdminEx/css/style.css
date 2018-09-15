@@ -302,6 +302,7 @@ hr {
     color: #65cea7;
     border-radius: 0;
     -webkit-border-radius: 0;
+    cursor: pointer;
 }
 
 .custom-nav > li.menu-list > a {
@@ -694,6 +695,7 @@ h5.left-nav-title {
 .notification-menu .dropdown-menu li a:hover {
     background: #2a323f;
     color: #fff;
+    cursor: pointer;
 }
 
 .notification-menu .dropdown-menu li i {
@@ -1162,27 +1164,23 @@ footer.sticky-footer {
 }
 
 .state-overview .panel {
-    padding: 35px 20px;
+    padding: 25px 20px;
 }
 
 .state-overview .purple {
     background: #6a8abe;
-    box-shadow: 0 5px 0 #5f7cab;
 }
 
 .state-overview .red {
     background: #fc8675;
-    box-shadow: 0 5px 0 #e27869;
 }
 
 .state-overview .blue {
     background: #5ab6df;
-    box-shadow: 0 5px 0 #51a3c8;
 }
 
 .state-overview .green {
     background: #4acacb;
-    box-shadow: 0 5px 0 #42b5b6;
 }
 
 .state-overview .symbol, .state-overview .state-value {
@@ -3145,6 +3143,10 @@ div.tagsinput span.tag a {
 
 .table-invoice strong {
     color: #2a323f;
+}
+
+.table.no-border tr td {
+    border: 0px!important;
 }
 
 .payment-method p {

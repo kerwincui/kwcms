@@ -1,0 +1,226 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using kewcms.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="#" type="image/png">
+    <title>@ViewData["Title"] - kewcms</title>
+
+    <!--icheck-->
+    <link src="~/lib/adminex/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link src="~/lib/adminex/js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link src="~/lib/adminex/js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link src="~/lib/adminex/js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--dashboard calendar-->
+    <link href="~/lib/adminex/css/clndr.css" rel="stylesheet">
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" src="~/lib/adminex/js/morris-chart/morris.css">
+    <!--common-->
+    <link href="~/lib/adminex/css/style.css" rel="stylesheet">
+    <link href="~/lib/adminex/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="~/lib/adminex/js/html5shiv.js"></script>
+    <script src="~/lib/adminex/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="sticky-header">
+    <section>
+        <!-- left side start-->
+        <div class="left-side sticky-left-side">
+            <!--logo and iconic logo start-->
+            <div class="logo">
+                <a href="~/lib/adminex/index.html"><img src="~/lib/adminex/images/logo.png" alt=""></a>
+            </div>
+            <div class="logo-icon text-center">
+                <a href="~/lib/adminex/index.html"><img src="~/lib/adminex/images/logo_icon.png" alt=""></a>
+            </div>
+            <!--logo and iconic logo end-->
+
+            <div class="left-side-inner">
+                <!-- visible to small devices only -->
+                <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                    <div class="media logged-user">
+                        <img alt="" src="~/lib/adminex/images/photos/user-avatar.png" class="media-object">
+                        <div class="media-body">
+                            <h4><a asp-area="admin" asp-controller="Manage" asp-action="Index">@UserManager.GetUserName(User)</a></h4>
+                            <span>"Hello There..."</span>
+                        </div>
+                    </div>
+                    <h5 class="left-nav-title">账户信息</h5>
+
+                        <ul class="nav nav-pills nav-stacked custom-nav">
+                            <li><a asp-area="admin" asp-controller="Manage" asp-action="Index"><i class="fa fa-user"></i> <span>个人资料</span></a></li>
+                            <li><a onclick="document.getElementById('logoutForm').submit(); return false;"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+                        </ul>
+                </div>
+
+                <!--sidebar nav start-->
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span> 管理中心</span></a></li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-book"></i> <span> 文章管理</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="blank_page.html"> 查看文章</a></li>
+                            <li><a href="boxed_view.html"> 添加文章</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-tasks"></i> <span> 分类管理</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="general.html"> 查看分类</a></li>
+                            <li><a href="buttons.html"> 添加分类</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-envelope"></i> <span> 留言管理</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="grids.html"> 查看留言</a></li>
+                            <li><a href="gallery.html"> 未回复留言</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-users"></i> <span> 管理员</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="mail.html"> 查看管理员</a></li>
+                            <li><a href="mail_compose.html"> 添加管理员</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-star"></i> <span> 其他</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a href="#"> 友情链接</a></li>
+                            <li><a href="#"> 在线招聘</a></li>
+                            <li><a href="#"> 地图标注</a></li>
+                            <li><a href="#"> 客服管理</a></li>
+                            <li><a href="#"> 问卷调查</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <!--sidebar nav end-->
+            </div>
+        </div>
+        <!-- left side end-->
+        <!-- main content start-->
+        <div class="main-content">
+
+            <!-- header section start-->
+            <div class="header-section">
+
+                <!--toggle button start-->
+                <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+                <!--toggle button end-->
+                <!--search start-->
+                <form class="searchform" action="index.html" method="post">
+                    <input type="text" class="form-control" name="keyword" placeholder="搜索..." />
+                </form>
+                <!--search end-->
+                <!--notification menu start -->
+                <div class="menu-right">
+                    <ul class="notification-menu">
+                        <li class="">
+                            <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge">4</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-head pull-right">
+                                <h5 class="title">Notifications</h5>
+                                <ul class="dropdown-list normal-list">
+                                    <li class="new">
+                                        <a href="">
+                                            <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                            <span class="name">Server #1 overloaded.  </span>
+                                            <em class="small">34 mins</em>
+                                        </a>
+                                    </li>
+                                    <li class="new">
+                                        <a href="">
+                                            <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                                            <span class="name">Server #3 overloaded.  </span>
+                                            <em class="small">1 hrs</em>
+                                        </a>
+                                    </li>
+                                    <li class="new"><a href="">See All Notifications</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+
+                                <a asp-area="admin" asp-controller="Manage" asp-action="Index" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <img src="~/lib/adminex/images/photos/user-avatar.png" alt="" />
+                                    @UserManager.GetUserName(User)
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                                    <li><a asp-area="admin" asp-controller="Manage" asp-action="Index"><i class="fa fa-user"></i>  个人资料</a></li>
+                                    <li><a onclick="document.getElementById('logoutForm').submit(); return false;"><i class="fa fa-sign-out"></i> 退出</a></li>
+                                </ul>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!--notification menu end -->
+
+            </div>
+            <!-- header section end-->
+            @RenderBody()
+            <!--footer section start-->
+            <footer>
+                2018 &copy; Kewcms by <a href="http://qilin100.cn/" target="_blank">Asp.net Core MVC企业站示例</a>
+            </footer>
+            <!--footer section end-->
+        </div>
+        <!-- main content end-->
+
+    </section>
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="~/lib/adminex/js/jquery-1.10.2.min.js"></script>
+    <script src="~/lib/adminex/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="~/lib/adminex/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/lib/adminex/js/bootstrap.min.js"></script>
+    <script src="~/lib/adminex/js/modernizr.min.js"></script>
+    <script src="~/lib/adminex/js/jquery.nicescroll.js"></script>
+    <!--easy pie chart-->
+    <script src="~/lib/adminex/js/easypiechart/jquery.easypiechart.js"></script>
+    <script src="~/lib/adminex/js/easypiechart/easypiechart-init.js"></script>
+    <!--Sparkline Chart-->
+    <script src="~/lib/adminex/js/sparkline/jquery.sparkline.js"></script>
+    <script src="~/lib/adminex/js/sparkline/sparkline-init.js"></script>
+    <!--icheck -->
+    <script src="~/lib/adminex/js/iCheck/jquery.icheck.js"></script>
+    <script src="~/lib/adminex/js/icheck-init.js"></script>
+    <!-- jQuery Flot Chart-->
+    <script src="~/lib/adminex/js/flot-chart/jquery.flot.js"></script>
+    <script src="~/lib/adminex/js/flot-chart/jquery.flot.tooltip.js"></script>
+    <script src="~/lib/adminex/js/flot-chart/jquery.flot.resize.js"></script>
+    <!--Morris Chart-->
+    <script src="~/lib/adminex/js/morris-chart/morris.js"></script>
+    <script src="~/lib/adminex/js/morris-chart/raphael-min.js"></script>
+    <!--Calendar-->
+    <script src="~/lib/adminex/js/calendar/clndr.js"></script>
+    <script src="~/lib/adminex/js/calendar/evnt.calendar.init.js"></script>
+    <script src="~/lib/adminex/js/calendar/moment-2.2.1.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <!--common scripts for all pages-->
+    <script src="~/lib/adminex/js/scripts.js"></script>
+    <!--Dashboard Charts-->
+    <script src="~/lib/adminex/js/dashboard-chart-init.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
