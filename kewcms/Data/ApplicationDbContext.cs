@@ -24,6 +24,11 @@ namespace kewcms.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            //指定生成的表名
+            builder.Entity<Article>().ToTable("Article");
+            builder.Entity<ArticleCategory>().ToTable("ArticleCategory");
+            builder.Entity<Feedback>().ToTable("Feedback");
+            builder.Entity<FriendLink>().ToTable("FriendLink");
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

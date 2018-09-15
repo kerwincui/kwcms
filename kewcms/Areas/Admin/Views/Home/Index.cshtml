@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DashboardViewModel
+@{
     ViewData["Title"] = "Index";
 }
 
@@ -18,7 +19,7 @@
                             <i class="fa fa-gavel"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">230</div>
+                            <div class="value">@Model.BaseInfo.WebClick</div>
                             <div class="title">网站访问量</div>
                         </div>
                     </div>
@@ -29,7 +30,7 @@
                             <i class="fa fa-tags"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">3490</div>
+                            <div class="value">@Model.ArticleCount</div>
                             <div class="title">文章数</div>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                             <i class="fa fa-money"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">22014</div>
+                            <div class="value">@Model.MessageCount</div>
                             <div class="title">留言</div>
                         </div>
                     </div>
@@ -51,7 +52,7 @@
                             <i class="fa fa-eye"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">390</div>
+                            <div class="value">@Model.AdminCount</div>
                             <div class="title">管理员</div>
                         </div>
                     </div>
@@ -117,30 +118,30 @@
                 <div class="panel-body">
                     <table class="table no-border">
                         <tbody>
-                        <tr>
-                            <td width="50"><a>网站名称</a></td>
-                            <td width="40%">Model.Name</td>
-                            <td width="50"><a>域名</a></td>
-                            <td width="35%">Model.Domain</td>
-                        </tr>
-                        <tr>
-                            <td><a>公司名称</a></td>
-                            <td>Model.Company</td>
-                            <td><a>地址</a></td>
-                            <td>Model.Address</td>
-                        </tr>
-                        <tr>
-                            <td><a>电话</a></td>
-                            <td>Model.Tel</td>
-                            <td><a>邮箱</a></td>
-                            <td>Model.Email</td>
-                        </tr>
-                        <tr>
-                            <td><a>备案号</a></td>
-                            <td>Model.Crod</td>
-                            <td><a>传真</a></td>
-                            <td>Model.Fax</td>
-                        </tr>
+                            <tr>
+                                <td width="50"><a>网站名称</a></td>
+                                <td width="40%">@Model.BaseInfo.Name</td>
+                                <td width="50"><a>域名</a></td>
+                                <td width="35%">@Model.BaseInfo.Domain</td>
+                            </tr>
+                            <tr>
+                                <td><a>公司名称</a></td>
+                                <td>@Model.BaseInfo.Company</td>
+                                <td><a>地址</a></td>
+                                <td>Model.Address</td>
+                            </tr>
+                            <tr>
+                                <td><a>电话</a></td>
+                                <td>@Model.BaseInfo.Tel</td>
+                                <td><a>邮箱</a></td>
+                                <td>@Model.BaseInfo.Email</td>
+                            </tr>
+                            <tr>
+                                <td><a>备案号</a></td>
+                                <td>@Model.BaseInfo.Crod</td>
+                                <td><a>传真</a></td>
+                                <td>@Model.BaseInfo.Fax</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -155,30 +156,30 @@
                 <div class="panel-body">
                     <table class="table no-border">
                         <tbody>
-                        <tr>
-                            <td width="50"><a>服务器名</a></td>
-                            <td width="40%">Model.ServerName</td>
-                            <td width="50"><a>IIS版本</a></td>
-                            <td width="35%">Model.ServerIIs</td>
-                        </tr>
-                        <tr>
-                            <td><a>服务器IP</a></td>
-                            <td>Model.ServerIp</td>
-                            <td><a>服务器时间</a></td>
-                            <td>Model.ServerTime</td>
-                        </tr>
-                        <tr>
-                            <td><a>操作系统</a></td>
-                            <td>Model.ServerSystem</td>
-                            <td><a>Net版本</a></td>
-                            <td>Model.NetVersion   </td>
-                        </tr>
-                        <tr>
-                            <td><a>系统目录</a></td>
-                            <td>Model.ServerPath</td>
-                            <td><a>访问端口</a></td>
-                            <td>Model.ServerPort</td>
-                        </tr>
+                            <tr>
+                                <td width="50"><a>服务器名</a></td>
+                                <td width="40%">@Model.ServerInfo.ServerName</td>
+                                <td width="50"><a>IIS版本</a></td>
+                                <td width="35%">@Model.ServerInfo.ServerIIs</td>
+                            </tr>
+                            <tr>
+                                <td><a>服务器IP</a></td>
+                                <td>@Model.ServerInfo.ServerIp</td>
+                                <td><a>服务器时间</a></td>
+                                <td>@Model.ServerInfo.ServerTime</td>
+                            </tr>
+                            <tr>
+                                <td><a>操作系统</a></td>
+                                <td>@Model.ServerInfo.ServerSystem</td>
+                                <td><a>Net版本</a></td>
+                                <td>@Model.ServerInfo.NetVersion   </td>
+                            </tr>
+                            <tr>
+                                <td><a>系统目录</a></td>
+                                <td>@Model.ServerInfo.ServerPath</td>
+                                <td><a>访问端口</a></td>
+                                <td>@Model.ServerInfo.ServerPort</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

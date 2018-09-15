@@ -17,7 +17,7 @@ using kewcms.Services;
 namespace kewcms.Areas.Admin.Controllers
 {
     [Authorize]
-    [Route("admin/[controller]/[action]")]
+    [Route("[area]/[controller]/[action]")]
     [Area("admin")]
     public class ManageController : Controller
     {
