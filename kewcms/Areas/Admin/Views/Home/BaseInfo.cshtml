@@ -1,0 +1,105 @@
+﻿@model kewcms.Areas.Admin.Models.BaseInfo
+
+@{
+    ViewData["Title"] = "BaseInfo";
+}
+
+<h2>BaseInfo</h2>
+
+<h4>BaseInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="BaseInfo" asp-controller="Home" asp-area="Admin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Domain" class="control-label"></label>
+                <input asp-for="Domain" class="form-control" />
+                <span asp-validation-for="Domain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                <input asp-for="Logo" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Company" class="control-label"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tel" class="control-label"></label>
+                <input asp-for="Tel" class="form-control" />
+                <span asp-validation-for="Tel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fax" class="control-label"></label>
+                <input asp-for="Fax" class="form-control" />
+                <span asp-validation-for="Fax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Crod" class="control-label"></label>
+                <input asp-for="Crod" class="form-control" />
+                <span asp-validation-for="Crod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Copyright" class="control-label"></label>
+                <input asp-for="Copyright" class="form-control" />
+                <span asp-validation-for="Copyright" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Kefu" class="control-label"></label>
+                <input asp-for="Kefu" class="form-control" />
+                <span asp-validation-for="Kefu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountCode" class="control-label"></label>
+                <textarea asp-for="CountCode" class="form-control"></textarea>
+                <span asp-validation-for="CountCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WebClick" class="control-label"></label>
+                <input asp-for="WebClick" class="form-control" />
+                <span asp-validation-for="WebClick" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoTitle" class="control-label"></label>
+                <input asp-for="SeoTitle" class="form-control" />
+                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoDescription" class="control-label"></label>
+                <textarea asp-for="SeoDescription" class="form-control"></textarea>
+                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeoKeywords" class="control-label"></label>
+                <input asp-for="SeoKeywords" class="form-control" />
+                <span asp-validation-for="SeoKeywords" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

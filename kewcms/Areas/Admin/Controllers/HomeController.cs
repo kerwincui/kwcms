@@ -15,26 +15,61 @@ using Microsoft.AspNetCore.Identity;
 namespace kewcms.Areas.Admin.Controllers
 {
     [Authorize]
-    public class HomeController : Controller {
+    [Area("admin")]
+    public class HomeController : Controller
+    {
 
-        private UserManager<ApplicationUser> userManager;
-        private ApplicationDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly ApplicationDbContext dbContext;
 
-        public HomeController(UserManager<ApplicationUser> _userManager, ApplicationDbContext _dbContext) {
+        public HomeController(UserManager<ApplicationUser> _userManager, ApplicationDbContext _dbContext)
+        {
             userManager = _userManager;
             dbContext = _dbContext;
         }
 
-        [Area("admin")]
-        public IActionResult Index() {
+        public IActionResult Index()
+        {
             DashboardViewModel model = new DashboardViewModel();
             model.BaseInfo = GetSiteInfo();
             model.ServerInfo = GetServerInfo();
-            model.Articles=new List<Article>();
+            model.Articles = new List<Article>();
             model.AdminCount = userManager.Users.Count();
             model.ArticleCount = dbContext.Articles.Count();
             model.MessageCount = dbContext.Feedbacks.Count();
             return View(model);
+        }
+
+        //网站基本信息
+        public ActionResult BaseInfo()
+        {
+            BaseInfo model = GetSiteInfo();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult BaseInfo(BaseInfo info)
+        {
+            XDocument site = XDocument.Load(AppContext.BaseDirectory + "/site.xml");
+            XElement siteInfo = site.Element("site");
+            siteInfo.Element("domain").Value = info.Domain ?? "";
+            siteInfo.Element("name").Value = info.Name ?? "";
+            siteInfo.Element("logo").Value = info.Logo ?? "";
+            siteInfo.Element("company").Value = info.Company ?? "";
+            siteInfo.Element("address").Value = info.Address ?? "";
+            siteInfo.Element("tel").Value = info.Tel ?? "";
+            siteInfo.Element("fax").Value = info.Fax ?? "";
+            siteInfo.Element("email").Value = info.Email ?? "";
+            siteInfo.Element("crod").Value = info.Crod ?? "";
+            siteInfo.Element("copyright").Value = info.Copyright ?? "";
+            siteInfo.Element("kefu").Value = info.Kefu ?? "";
+            siteInfo.Element("countCode").Value = info.CountCode ?? "";
+            siteInfo.Element("webClick").Value = info.WebClick ?? "";
+            siteInfo.Element("seoTitle").Value = info.SeoTitle ?? "";
+            siteInfo.Element("seoKeywords").Value = info.SeoKeywords ?? "";
+            siteInfo.Element("seoDescription").Value = info.SeoDescription ?? "";
+            siteInfo.Save(AppContext.BaseDirectory + "/site.xml");
+            return View(info);
         }
 
         #region help method
