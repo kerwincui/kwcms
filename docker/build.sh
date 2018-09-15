@@ -56,3 +56,5 @@ if [ $? -ne 0 ]; then
     echo "Remove temp build error!"
     exit 7
 fi
+
+docker run
