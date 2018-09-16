@@ -25,10 +25,7 @@
     <!--Morris Chart CSS -->
     <link rel="stylesheet" src="~/lib/adminex/js/morris-chart/morris.css">
 
-    <!--dynamic table-->
-    <link href="~/lib/adminex/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-    <link href="~/lib/adminex/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/lib/adminex/js/data-tables/DT_bootstrap.css" />
+
 
     <!--common-->
     <link href="~/lib/adminex/css/style.css" rel="stylesheet">
@@ -104,11 +101,18 @@
                             <li><a asp-area="Admin" asp-controller="ArticleCategory" asp-action="Edit"> 添加管理员</a></li>
                         </ul>
                     </li>
+                    <li class="menu-list">
+                        <a href=""><i class="fa fa-users"></i> <span> 友情链接</span></a>
+                        <ul class="sub-menu-list">
+                            <li><a asp-area="Admin" asp-controller="FriendLink" asp-action="Index"> 查看友情链接</a></li>
+                            <li><a asp-area="Admin" asp-controller="FriendLink" asp-action="Edit"> 添加友情链接</a></li>
+                        </ul>
+                    </li>
                     <li class=""><a asp-area="Admin" asp-controller="Home" asp-action="BaseInfo"><i class="fa fa-wrench"></i> <span>网站信息</span></a></li>
                     <li class="menu-list">
                         <a href=""><i class="fa fa-star"></i> <span> 其他</span></a>
                         <ul class="sub-menu-list">
-                            <li><a asp-area="Admin" asp-controller="FriendLink" asp-action="Index"> 友情链接</a></li>
+                            <li><a asp-area="Admin" asp-controller="VisitorInfo" asp-action="Index"> 访客信息</a></li>
                             <li><a href="#"> 在线招聘</a></li>
                             <li><a href="#"> 地图标注</a></li>
                             <li><a href="#"> 客服管理</a></li>
@@ -145,6 +149,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-head pull-right">
                                 <h5 class="title">Notifications</h5>
+                                
                                 <ul class="dropdown-list normal-list">
                                     <li class="new">
                                         <a href="">
@@ -160,7 +165,7 @@
                                             <em class="small">1 hrs</em>
                                         </a>
                                     </li>
-                                    <li class="new"><a href="">See All Notifications</a></li>
+                                    <li class="new"><a asp-area="Admin" asp-controller="Feedback" asp-action="Index">查看所有留言</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -223,11 +228,6 @@
     <script src="~/lib/adminex/js/calendar/evnt.calendar.init.js"></script>
     <script src="~/lib/adminex/js/calendar/moment-2.2.1.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
-    <!--dynamic table-->
-    <script type="text/javascript" language="javascript" src="~/lib/adminex/js/advanced-datatable/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="~/lib/adminex/js/data-tables/DT_bootstrap.js"></script>
-    <!--dynamic table initialization -->
-    <script src="~/lib/adminex/js/dynamic_table_init.js"></script>
     <!--common scripts for all pages-->
     <script src="~/lib/adminex/js/scripts.js"></script>
     <!--Dashboard Charts-->

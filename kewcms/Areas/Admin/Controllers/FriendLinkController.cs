@@ -26,52 +26,12 @@ namespace kewcms.Areas.Admin.Controllers
             return View(await _context.FriendLinks.ToListAsync());
         }
 
-        // GET: Admin/FriendLink/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var friendLink = await _context.FriendLinks
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (friendLink == null)
-            {
-                return NotFound();
-            }
-
-            return View(friendLink);
-        }
-
-        // GET: Admin/FriendLink/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/FriendLink/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,SiteUrl,ImgUrl,SortId,AddTime")] FriendLink friendLink)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(friendLink);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(friendLink);
-        }
-
         // GET: Admin/FriendLink/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return View(new FriendLink());
             }
 
             var friendLink = await _context.FriendLinks.FindAsync(id);
@@ -98,7 +58,15 @@ namespace kewcms.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(friendLink);
+                    if (id == 0)
+                    {
+                        friendLink.AddTime = DateTime.Now;
+                        _context.Add(friendLink);
+                    }
+                    else
+                    {
+                        _context.Update(friendLink);
+                    }
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -117,28 +85,10 @@ namespace kewcms.Areas.Admin.Controllers
             return View(friendLink);
         }
 
-        // GET: Admin/FriendLink/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var friendLink = await _context.FriendLinks
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (friendLink == null)
-            {
-                return NotFound();
-            }
-
-            return View(friendLink);
-        }
-
         // POST: Admin/FriendLink/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var friendLink = await _context.FriendLinks.FindAsync(id);
             _context.FriendLinks.Remove(friendLink);

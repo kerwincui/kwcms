@@ -4,69 +4,91 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
-<h4>Feedback</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <textarea asp-for="Content" class="form-control"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tel" class="control-label"></label>
-                <input asp-for="Tel" class="form-control" />
-                <span asp-validation-for="Tel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="QQ" class="control-label"></label>
-                <input asp-for="QQ" class="form-control" />
-                <span asp-validation-for="QQ" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddTime" class="control-label"></label>
-                <input asp-for="AddTime" class="form-control" />
-                <span asp-validation-for="AddTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReplayContent" class="control-label"></label>
-                <textarea asp-for="ReplayContent" class="form-control"></textarea>
-                <span asp-validation-for="ReplayContent" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReplayTime" class="control-label"></label>
-                <input asp-for="ReplayTime" class="form-control" />
-                <span asp-validation-for="ReplayTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        添加分类
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Title"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Title" class="form-control" placeholder="">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Content"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Content" class="form-control" placeholder="">
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Name"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Name" class="form-control" placeholder="">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Tel"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Tel" class="form-control" placeholder="">
+                                <span asp-validation-for="Tel" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="QQ"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="QQ" class="form-control" placeholder="">
+                                <span asp-validation-for="QQ" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Email"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Email" class="form-control" placeholder="">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="AddTime"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="AddTime" class="form-control" placeholder="">
+                                <span asp-validation-for="AddTime" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="ReplayContent"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="ReplayContent" class="form-control" placeholder="">
+                                <span asp-validation-for="ReplayContent" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="ReplayTime"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="ReplayTime" class="form-control" placeholder="">
+                                <span asp-validation-for="ReplayTime" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

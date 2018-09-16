@@ -4,49 +4,63 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
-<h4>FriendLink</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SiteUrl" class="control-label"></label>
-                <input asp-for="SiteUrl" class="form-control" />
-                <span asp-validation-for="SiteUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImgUrl" class="control-label"></label>
-                <input asp-for="ImgUrl" class="form-control" />
-                <span asp-validation-for="ImgUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SortId" class="control-label"></label>
-                <input asp-for="SortId" class="form-control" />
-                <span asp-validation-for="SortId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AddTime" class="control-label"></label>
-                <input asp-for="AddTime" class="form-control" />
-                <span asp-validation-for="AddTime" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        添加分类
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Title"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Title" class="form-control" placeholder="">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SiteUrl"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SiteUrl" class="form-control" placeholder="">
+                                <span asp-validation-for="SiteUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="ImgUrl"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="ImgUrl" class="form-control" placeholder="">
+                                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SortId"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SortId" class="form-control" placeholder="">
+                                <span asp-validation-for="SortId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="AddTime"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="AddTime" class="form-control" placeholder="">
+                                <span asp-validation-for="AddTime" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

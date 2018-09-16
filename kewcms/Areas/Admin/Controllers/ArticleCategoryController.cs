@@ -26,52 +26,12 @@ namespace kewcms.Areas.Admin.Controllers
             return View(await _context.ArticleCategories.ToListAsync());
         }
 
-        // GET: Admin/ArticleCategory/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var articleCategory = await _context.ArticleCategories
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (articleCategory == null)
-            {
-                return NotFound();
-            }
-
-            return View(articleCategory);
-        }
-
-        // GET: Admin/ArticleCategory/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/ArticleCategory/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,CallIndex,SeoTitle,SeoKeyword,SeoDescription,Description")] ArticleCategory articleCategory)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(articleCategory);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(articleCategory);
-        }
-
         // GET: Admin/ArticleCategory/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
-                return NotFound();
+                return View(new ArticleCategory());
             }
 
             var articleCategory = await _context.ArticleCategories.FindAsync(id);
@@ -98,7 +58,12 @@ namespace kewcms.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(articleCategory);
+                    if (id == 0) {
+                        _context.Add(articleCategory);
+                    }
+                    else {
+                        _context.Update(articleCategory);
+                    }
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -117,28 +82,10 @@ namespace kewcms.Areas.Admin.Controllers
             return View(articleCategory);
         }
 
-        // GET: Admin/ArticleCategory/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var articleCategory = await _context.ArticleCategories
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (articleCategory == null)
-            {
-                return NotFound();
-            }
-
-            return View(articleCategory);
-        }
-
         // POST: Admin/ArticleCategory/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var articleCategory = await _context.ArticleCategories.FindAsync(id);
             _context.ArticleCategories.Remove(articleCategory);

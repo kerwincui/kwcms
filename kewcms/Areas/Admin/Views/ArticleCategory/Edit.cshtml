@@ -4,54 +4,70 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
-<h4>ArticleCategory</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CallIndex" class="control-label"></label>
-                <input asp-for="CallIndex" class="form-control" />
-                <span asp-validation-for="CallIndex" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SeoTitle" class="control-label"></label>
-                <input asp-for="SeoTitle" class="form-control" />
-                <span asp-validation-for="SeoTitle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SeoKeyword" class="control-label"></label>
-                <textarea asp-for="SeoKeyword" class="form-control"></textarea>
-                <span asp-validation-for="SeoKeyword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SeoDescription" class="control-label"></label>
-                <textarea asp-for="SeoDescription" class="form-control"></textarea>
-                <span asp-validation-for="SeoDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        添加分类
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Title"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Title" class="form-control" placeholder="">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="CallIndex"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="CallIndex" class="form-control" placeholder="">
+                                <span asp-validation-for="CallIndex" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SeoTitle"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SeoTitle" class="form-control" placeholder="">
+                                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SeoKeyword"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SeoKeyword" class="form-control" placeholder="">
+                                <span asp-validation-for="SeoKeyword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SeoDescription"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SeoDescription" class="form-control" placeholder="">
+                                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Description"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Description" class="form-control" placeholder="">
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

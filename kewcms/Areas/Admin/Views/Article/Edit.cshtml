@@ -10,11 +10,12 @@
             <section class="panel">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        添加管理员
+                        添加文章
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal adminex-form">
+                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form">
+                        <input type="hidden" asp-for="Id" />
                         <div class="form-group">
                             <label class="control-label col-md-3" asp-for="Title"></label>
                             <div class="col-md-6">

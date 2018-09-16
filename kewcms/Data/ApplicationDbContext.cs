@@ -20,6 +20,7 @@ namespace kewcms.Data
         public DbSet<ArticleCategory> ArticleCategories { get; set; }
         public DbSet<Role> IdentityRoles { get; set; }
         public DbSet<FriendLink> FriendLinks { get; set; }
+        public DbSet<VisitorInfo> VisitorInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,6 +30,7 @@ namespace kewcms.Data
             builder.Entity<ArticleCategory>().ToTable("ArticleCategory");
             builder.Entity<Feedback>().ToTable("Feedback");
             builder.Entity<FriendLink>().ToTable("FriendLink");
+            builder.Entity<VisitorInfo>().ToTable("VisitorInfo");
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

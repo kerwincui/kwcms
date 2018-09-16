@@ -1,4 +1,4 @@
-﻿@model IEnumerable<kewcms.Areas.Admin.Models.FriendLink>
+﻿@model IEnumerable<kewcms.Areas.Admin.Models.VisitorInfo>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,7 +9,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading no-border">
-                    友情链接管理
+                    访客信息
                     <span class="tools pull-right">
                         <a href="javascript:;" class="fa fa-chevron-down"></a>
                     </span>
@@ -18,31 +18,25 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>@Html.DisplayNameFor(model => model.ImgUrl)</th>
-                                <th>@Html.DisplayNameFor(model => model.Title)</th>
-                                <th>@Html.DisplayNameFor(model => model.SiteUrl)</th>
-                                <th>@Html.DisplayNameFor(model => model.SortId)</th>
+                                <th>@Html.DisplayNameFor(model => model.VisitorIp)</th>
+                                <th>@Html.DisplayNameFor(model => model.CityId)</th>
+                                <th>@Html.DisplayNameFor(model => model.CityName)</th>
+                                <th>@Html.DisplayNameFor(model => model.VisitUrl)</th>
+                                <th>@Html.DisplayNameFor(model => model.AppVersion)</th>
                                 <th>@Html.DisplayNameFor(model => model.AddTime)</th>
-                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@Html.DisplayFor(modelItem => item.ImgUrl)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SiteUrl)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SortId)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.AddTime)</td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                        <form asp-action="Delete">
-                                            <input type="hidden" asp-for="@item.Id" />
-                                            <input type="submit" value="Delete" class="btn btn-default" /> |
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.VisitorIp)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CityId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CityName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.VisitUrl)</td>
+                                <td>@Html.DisplayFor(modelItem => item.AppVersion)</td>
+                                <td>@Html.DisplayFor(modelItem => item.AddTime)</td>
+                            </tr>
                             }
                         </tbody>
                     </table>
