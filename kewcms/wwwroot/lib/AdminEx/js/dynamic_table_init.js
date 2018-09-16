@@ -21,7 +21,7 @@ $(document).ready(function() {
      */
     var nCloneTh = document.createElement( 'th' );
     var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="images/details_open.png">';
+    nCloneTd.innerHTML = '<img src="../lib/adminex/images/details_open.png">';
     nCloneTd.className = "center";
 
     $('#hidden-table-info thead tr').each( function () {

@@ -1,0 +1,136 @@
+﻿@model kewcms.Areas.Admin.Models.Article
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        添加管理员
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal adminex-form">
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Title"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Title" class="form-control" placeholder="">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SubTitle"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SubTitle" class="form-control" placeholder="">
+                                <span asp-validation-for="SubTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="ImgUrl"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="ImgUrl" class="form-control" placeholder="">
+                                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Zhaiyao"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Zhaiyao" class="form-control" placeholder="">
+                                <span asp-validation-for="Zhaiyao" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Content"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Content" class="form-control" placeholder="">
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="CallIndex"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="CallIndex" class="form-control" placeholder="">
+                                <span asp-validation-for="CallIndex" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Remark"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Remark" class="form-control" placeholder="">
+                                <span asp-validation-for="Remark" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SeoTitle"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SeoTitle" class="form-control" placeholder="">
+                                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SeoKeyword"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SeoKeyword" class="form-control" placeholder="">
+                                <span asp-validation-for="SeoKeyword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="SeoDescription"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="SeoDescription" class="form-control" placeholder="">
+                                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Click"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Click" class="form-control" placeholder="">
+                                <span asp-validation-for="Click" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Tag"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Tag" class="form-control" placeholder="">
+                                <span asp-validation-for="Tag" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="Author"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Author" class="form-control" placeholder="">
+                                <span asp-validation-for="Author" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="AddTime"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="AddTime" class="form-control" placeholder="">
+                                <span asp-validation-for="AddTime" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3" asp-for="UpdateTime"></label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="UpdateTime" class="form-control" placeholder="">
+                                <span asp-validation-for="UpdateTime" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

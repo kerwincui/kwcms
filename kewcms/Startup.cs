@@ -22,10 +22,13 @@ namespace kewcms {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
+            //使用mysql
             services.AddDbContextPool<ApplicationDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(Configuration.GetConnectionString("MysqlConnection")));
+
+            //使用sqlserver
             //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //    options.UseSqlServer(Configuration.GetConnectionString("MSSqlConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options => {
                 // 配置身份选项
@@ -86,13 +89,17 @@ namespace kewcms {
 
             app.UseMvc(routes => {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}"
+                    name: "areaname",
+                    template: "{Admin:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
                 routes.MapAreaRoute(
                     name: "admin",
-                    areaName:"admin",
-                    template: "admin/{controller=Home}/{action=Index}/{id?}"
+                    areaName: "Admin",
+                    template: "Admin/{controller=Home}/{action=Index}"
+                );
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
                 );
             });
         }

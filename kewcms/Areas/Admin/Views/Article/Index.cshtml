@@ -1,0 +1,78 @@
+﻿@model IEnumerable<kewcms.Areas.Admin.Models.Article>
+
+@{
+    ViewData["Title"] = "文章";
+}
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading no-border">
+                    文章管理
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ImgUrl)</th>
+                            <th>@Html.DisplayNameFor(model => model.Title)</th>
+                            <th>@Html.DisplayNameFor(model => model.CallIndex)</th>
+                            <th>@Html.DisplayNameFor(model => model.Author)</th>
+                            <th>@Html.DisplayNameFor(model => model.AddTime)</th>
+                            <th>@Html.DisplayNameFor(model => model.Click)</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.ImgUrl)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CallIndex)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                                <td>@Html.DisplayFor(modelItem => item.AddTime)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Click)</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <form asp-action="Delete">
+                                        <input type="hidden" asp-for="@item.Id" />
+                                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                    
+                    
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="dataTables_info" id="dynamic-table_info">Showing 1 to 10 of 57 entries</div>
+                        </div>
+                        <div class="span6">
+                            <div class="dataTables_paginate paging_bootstrap pagination">
+                                <ul>
+                                    <li class="prev disabled"><a href="#">← Previous</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li class="next"><a href="#">Next → </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </section>
+        </div>
+    </div>
+</div>

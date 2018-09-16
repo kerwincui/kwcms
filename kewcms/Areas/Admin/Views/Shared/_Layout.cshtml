@@ -24,6 +24,12 @@
     <link href="~/lib/adminex/css/clndr.css" rel="stylesheet">
     <!--Morris Chart CSS -->
     <link rel="stylesheet" src="~/lib/adminex/js/morris-chart/morris.css">
+
+    <!--dynamic table-->
+    <link href="~/lib/adminex/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+    <link href="~/lib/adminex/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/adminex/js/data-tables/DT_bootstrap.css" />
+
     <!--common-->
     <link href="~/lib/adminex/css/style.css" rel="stylesheet">
     <link href="~/lib/adminex/css/style-responsive.css" rel="stylesheet">
@@ -60,49 +66,49 @@
                     </div>
                     <h5 class="left-nav-title">账户信息</h5>
 
-                        <ul class="nav nav-pills nav-stacked custom-nav">
-                            <li><a asp-area="admin" asp-controller="Manage" asp-action="Index"><i class="fa fa-user"></i> <span>个人资料</span></a></li>
-                            <li><a onclick="document.getElementById('logoutForm').submit(); return false;"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
-                        </ul>
+                    <ul class="nav nav-pills nav-stacked custom-nav">
+                        <li><a asp-area="admin" asp-controller="Manage" asp-action="Index"><i class="fa fa-user"></i> <span>个人资料</span></a></li>
+                        <li><a onclick="document.getElementById('logoutForm').submit(); return false;"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+                    </ul>
                 </div>
 
                 <!--sidebar nav start-->
                 <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span> 管理中心</span></a></li>
+                    <li class="active"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i> <span> 管理中心</span></a></li>
                     <li class="menu-list">
                         <a href=""><i class="fa fa-book"></i> <span> 文章管理</span></a>
                         <ul class="sub-menu-list">
-                            <li><a href="blank_page.html"> 查看文章</a></li>
-                            <li><a href="boxed_view.html"> 添加文章</a></li>
+                            <li><a asp-area="Admin" asp-controller="Article" asp-action="Index"> 查看文章</a></li>
+                            <li><a asp-area="Admin" asp-controller="Article" asp-action="Edit"> 添加文章</a></li>
                         </ul>
                     </li>
                     <li class="menu-list">
                         <a href=""><i class="fa fa-tasks"></i> <span> 分类管理</span></a>
                         <ul class="sub-menu-list">
-                            <li><a href="general.html"> 查看分类</a></li>
-                            <li><a href="buttons.html"> 添加分类</a></li>
+                            <li><a asp-area="Admin" asp-controller="ArticleCategory" asp-action="Index"> 查看分类</a></li>
+                            <li><a asp-area="Admin" asp-controller="ArticleCategory" asp-action="Edit"> 添加分类</a></li>
                         </ul>
                     </li>
                     <li class="menu-list">
                         <a href=""><i class="fa fa-envelope"></i> <span> 留言管理</span></a>
                         <ul class="sub-menu-list">
-                            <li><a href="grids.html"> 查看留言</a></li>
-                            <li><a href="gallery.html"> 未回复留言</a></li>
+                            <li><a asp-area="Admin" asp-controller="Feedback" asp-action="Index"> 查看留言</a></li>
+                            <li><a asp-area="Admin" asp-controller="Feedback" asp-action="Edit"> 未回复留言</a></li>
 
                         </ul>
                     </li>
                     <li class="menu-list">
                         <a href=""><i class="fa fa-users"></i> <span> 管理员</span></a>
                         <ul class="sub-menu-list">
-                            <li><a href="mail.html"> 查看管理员</a></li>
-                            <li><a href="mail_compose.html"> 添加管理员</a></li>
+                            <li><a asp-area="Admin" asp-controller="ArticleCategory" asp-action="Index"> 查看管理员</a></li>
+                            <li><a asp-area="Admin" asp-controller="ArticleCategory" asp-action="Edit"> 添加管理员</a></li>
                         </ul>
                     </li>
                     <li class=""><a asp-area="Admin" asp-controller="Home" asp-action="BaseInfo"><i class="fa fa-wrench"></i> <span>网站信息</span></a></li>
                     <li class="menu-list">
                         <a href=""><i class="fa fa-star"></i> <span> 其他</span></a>
                         <ul class="sub-menu-list">
-                            <li><a href="#"> 友情链接</a></li>
+                            <li><a asp-area="Admin" asp-controller="FriendLink" asp-action="Index"> 友情链接</a></li>
                             <li><a href="#"> 在线招聘</a></li>
                             <li><a href="#"> 地图标注</a></li>
                             <li><a href="#"> 客服管理</a></li>
@@ -125,7 +131,7 @@
                 <a class="toggle-btn"><i class="fa fa-bars"></i></a>
                 <!--toggle button end-->
                 <!--search start-->
-                <form class="searchform" action="index.html" method="post">
+                <form class="searchform" asp-area="Admin" asp-controller="Article" asp-action="Index" method="post">
                     <input type="text" class="form-control" name="keyword" placeholder="搜索..." />
                 </form>
                 <!--search end-->
@@ -217,6 +223,11 @@
     <script src="~/lib/adminex/js/calendar/evnt.calendar.init.js"></script>
     <script src="~/lib/adminex/js/calendar/moment-2.2.1.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <!--dynamic table-->
+    <script type="text/javascript" language="javascript" src="~/lib/adminex/js/advanced-datatable/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/lib/adminex/js/data-tables/DT_bootstrap.js"></script>
+    <!--dynamic table initialization -->
+    <script src="~/lib/adminex/js/dynamic_table_init.js"></script>
     <!--common scripts for all pages-->
     <script src="~/lib/adminex/js/scripts.js"></script>
     <!--Dashboard Charts-->

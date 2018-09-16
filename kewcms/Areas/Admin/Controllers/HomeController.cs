@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Identity;
 namespace kewcms.Areas.Admin.Controllers
 {
     [Authorize]
-    [Area("admin")]
+    [Area("Admin")]
     public class HomeController : Controller
     {
 

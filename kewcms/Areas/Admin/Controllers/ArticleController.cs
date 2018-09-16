@@ -11,11 +11,11 @@ using kewcms.Data;
 namespace kewcms.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ArticlesController : Controller
+    public class ArticleController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ArticlesController(ApplicationDbContext context)
+        public ArticleController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -26,52 +26,11 @@ namespace kewcms.Areas.Admin.Controllers
             return View(await _context.Articles.ToListAsync());
         }
 
-        // GET: Admin/Articles/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var article = await _context.Articles
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            return View(article);
-        }
-
-        // GET: Admin/Articles/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admin/Articles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,SubTitle,ImgUrl,Zhaiyao,Content,CallIndex,Remark,SeoTitle,SeoKeyword,SeoDescription,Click,Author,Tag,AddTime,UpdateTime")] Article article)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(article);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(article);
-        }
-
         // GET: Admin/Articles/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
+            if (id == 0) {
+                return View(new Article());
             }
 
             var article = await _context.Articles.FindAsync(id);
@@ -98,7 +57,15 @@ namespace kewcms.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(article);
+                    if (id == 0) {
+                        article.Author = User.Identity.Name;
+                        article.AddTime = DateTime.Now;
+                        _context.Add(article);
+                    }
+                    else {
+                        article.UpdateTime = DateTime.Now;
+                        _context.Update(article);
+                    }
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -117,30 +84,16 @@ namespace kewcms.Areas.Admin.Controllers
             return View(article);
         }
 
-        // GET: Admin/Articles/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: Admin/Articles/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var article = await _context.Articles
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var article = await _context.Articles.FindAsync(id);
             if (article == null)
             {
                 return NotFound();
             }
-
-            return View(article);
-        }
-
-        // POST: Admin/Articles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var article = await _context.Articles.FindAsync(id);
             _context.Articles.Remove(article);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
