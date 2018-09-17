@@ -13,12 +13,13 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using kewcms.Areas.Admin.Models.ManageViewModels;
 using kewcms.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace kewcms.Areas.Admin.Controllers
 {
     [Authorize]
     [Route("[area]/[controller]/[action]")]
-    [Area("admin")]
+    [Area("Admin")]
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -489,6 +490,12 @@ namespace kewcms.Areas.Admin.Controllers
             var model = new ShowRecoveryCodesViewModel { RecoveryCodes = recoveryCodes.ToArray() };
 
             return View(nameof(ShowRecoveryCodes), model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllUser() {
+            var users =await _userManager.Users.ToListAsync();
+            return View(users);
         }
 
         #region Helpers

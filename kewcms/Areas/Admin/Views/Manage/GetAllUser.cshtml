@@ -1,0 +1,64 @@
+﻿@model IEnumerable<kewcms.Areas.Admin.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "管理员";
+}
+
+<div class="wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading no-border">
+                    管理员
+                    <span class="tools pull-right">
+                        <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    </span>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.Pic)</th>
+                                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                                <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                                <th>@Html.DisplayNameFor(model => model.RealName)</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Pic)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.RealName)</td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                        <form asp-action="Delete">
+                                            <input type="hidden" asp-for="@item.Id" />
+                                            <input type="submit" value="Delete" class="btn btn-default" /> |
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="dataTables_paginate paging_bootstrap pagination">
+                        <ul>
+                            <li class="prev disabled"><a href="#">← 上一页</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li class="next"><a href="#">下一页 → </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
