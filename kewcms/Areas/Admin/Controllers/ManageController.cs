@@ -49,28 +49,19 @@ namespace kewcms.Areas.Admin.Controllers
         public string StatusMessage { get; set; }
 
         [HttpGet]
-        public async Task<IActionResult> Index() {
+        public async Task<IActionResult> Index()
+        {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            var model = new IndexViewModel
-            {
-                Username = user.UserName,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                IsEmailConfirmed = user.EmailConfirmed,
-                StatusMessage = StatusMessage
-            };
-
-            return View(model);
+            return View(user);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(IndexViewModel model)
+        public async Task<IActionResult> Index([Bind("Pic,UserName,RealName,Email,PhoneNumber,Note")]ApplicationUser model)
         {
             if (!ModelState.IsValid)
             {
@@ -82,28 +73,18 @@ namespace kewcms.Areas.Admin.Controllers
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-
-            var email = user.Email;
-            if (model.Email != email)
+            user.Pic = model.Pic;
+            user.Note = model.Note;
+            user.RealName = model.RealName;
+            user.UserName = model.UserName;
+            user.Email = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
             {
-                var setEmailResult = await _userManager.SetEmailAsync(user, model.Email);
-                if (!setEmailResult.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
-                }
+                throw new ApplicationException($"Unexpected error occurred setting user information for user with ID '{user.Id}'.");
             }
-
-            var phoneNumber = user.PhoneNumber;
-            if (model.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, model.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
-                {
-                    throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
-                }
-            }
-
-            StatusMessage = "Your profile has been updated";
+            TempData["message"]= "用户信息修改成功。";
             return RedirectToAction(nameof(Index));
         }
 
@@ -493,8 +474,9 @@ namespace kewcms.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllUser() {
-            var users =await _userManager.Users.ToListAsync();
+        public async Task<IActionResult> GetAllUser()
+        {
+            var users = await _userManager.Users.ToListAsync();
             return View(users);
         }
 

@@ -1,9 +1,19 @@
 ﻿@using kewcms.Areas.Admin.Models.ManageViewModels
 @using kewcms.Areas.Admin.Views.Manage
-@model kewcms.Areas.Admin.Models.ManageViewModels.IndexViewModel
+@model kewcms.Areas.Admin.Models.ApplicationUser
 
 @{
     ViewData["Title"] = "个人资料";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-success fade in">
+        <button type="button" class="close close-sm" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+        <strong>温馨提示!</strong> @TempData["message"]
+    </div>
 }
 
 <div class="wrapper">
@@ -18,10 +28,24 @@
                 <div class="panel-body">
                     <form method="post" class="form-horizontal adminex-form">
                         <div class="form-group">
+                            <label class="control-label col-md-3">头像</label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Pic" class="form-control" placeholder="">
+                                <span asp-validation-for="Pic" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3">用户名</label>
                             <div class="col-md-6">
-                                <input type="text" asp-for="Username" class="form-control" placeholder="">
-                                <span asp-validation-for="Username" class="text-danger"></span>
+                                <input type="text" asp-for="UserName" class="form-control" placeholder="">
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">真实名称</label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="RealName" class="form-control" placeholder="">
+                                <span asp-validation-for="RealName" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -36,6 +60,13 @@
                             <div class="col-md-6">
                                 <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="">
                                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">备注</label>
+                            <div class="col-md-6">
+                                <input type="text" asp-for="Note" class="form-control" placeholder="">
+                                <span asp-validation-for="Note" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group">
