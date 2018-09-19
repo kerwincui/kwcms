@@ -13,23 +13,23 @@ namespace kewcms.Areas.Admin.Controllers
     [Area("Admin")]
     public class FeedbackController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public FeedbackController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: Admin/Feedbacks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Feedbacks.ToListAsync());
+            return View(await context.Feedbacks.ToListAsync());
         }
 
         public async Task<IActionResult> NewMessage()
         {
             return PartialView("_NewMessage",
-                await _context.Feedbacks.Where(x => String.IsNullOrWhiteSpace(x.ReplayContent)).ToListAsync());
+                await context.Feedbacks.Where(x => String.IsNullOrWhiteSpace(x.ReplayContent)).ToListAsync());
         }
 
         // GET: Admin/Feedbacks/Edit/5
@@ -40,7 +40,7 @@ namespace kewcms.Areas.Admin.Controllers
                 return View(new Feedback());
             }
 
-            var feedback = await _context.Feedbacks.FindAsync(id);
+            var feedback = await context.Feedbacks.FindAsync(id);
             if (feedback == null)
             {
                 return NotFound();
@@ -67,7 +67,7 @@ namespace kewcms.Areas.Admin.Controllers
                     if (id == 0)
                     {
                         feedback.AddTime = DateTime.Now;
-                        _context.Add(feedback);
+                        context.Add(feedback);
                     }
                     else
                     {
@@ -75,9 +75,9 @@ namespace kewcms.Areas.Admin.Controllers
                         {
                             feedback.ReplayTime = DateTime.Now;
                         }
-                        _context.Update(feedback);
+                        context.Update(feedback);
                     }
-                    await _context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -100,15 +100,15 @@ namespace kewcms.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var feedback = await _context.Feedbacks.FindAsync(id);
-            _context.Feedbacks.Remove(feedback);
-            await _context.SaveChangesAsync();
+            var feedback = await context.Feedbacks.FindAsync(id);
+            context.Feedbacks.Remove(feedback);
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FeedbackExists(int id)
         {
-            return _context.Feedbacks.Any(e => e.Id == id);
+            return context.Feedbacks.Any(e => e.Id == id);
         }
     }
 }
