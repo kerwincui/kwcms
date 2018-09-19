@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form">
+                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form" id="articleForm">
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
                             <label class="control-label col-md-3" asp-for="Title"></label>
@@ -33,8 +33,27 @@
                         <div class="form-group">
                             <label class="control-label col-md-3" asp-for="ImgUrl"></label>
                             <div class="col-md-6">
-                                <input type="text" asp-for="ImgUrl" class="form-control" placeholder="">
-                                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+                                @*<input type="text" asp-for="ImgUrl" class="form-control" placeholder="">
+                                    <span asp-validation-for="ImgUrl" class="text-danger"></span>*@
+                                <!--头部，相册选择和格式选择-->
+                                <div id="uploader">
+                                    <div class="queueList" style="margin:0">
+                                        <div id="dndArea" class="placeholder" style="padding-bottom:6px; padding-top:100px;text-align:center;min-height:0;background-position:center 30px;">
+                                            <img src="@Model.ImgUrl" style="margin-top:-90px;padding:0 15px;display:initial" class="img-responsive" />
+                                            <div id="filePicker"></div>
+                                        </div>
+                                    </div>
+                                    <div class="statusBar" style="display:none;">
+                                        <div class="progress">
+                                            <span class="text">0%</span>
+                                            <span class="percentage"></span>
+                                        </div><div class="info"></div>
+                                        <div class="btns">
+                                            <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type='hidden' asp-for="ImgUrl" id="imgUrl" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -47,8 +66,10 @@
                         <div class="form-group">
                             <label class="control-label col-md-3" asp-for="Content"></label>
                             <div class="col-md-6">
-                                <input type="text" asp-for="Content" class="form-control" placeholder="">
-                                <span asp-validation-for="Content" class="text-danger"></span>
+                                <!--使用Ueditor-->
+                                <textarea id="container" asp-for="Content" type="text/plain">
+                                    欢迎使用Ueditor.Core
+                                </textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -134,4 +155,15 @@
 </div>
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+    <!--UEditor-->
+    <script src="~/lib/ueditor/ueditor.config.js"></script>
+    <script src="~/lib/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+            initialFrameHeight: 300
+        });
+    </script>
+    <!--webuploader-->
+    <script src="~/lib/ueditor/third-party/webuploader/webuploader.min.js"></script>
+
 }

@@ -18,7 +18,7 @@ namespace kewcms.Areas.Admin.Controllers
 {
     [Authorize]
     [Route("[area]/[controller]/[action]")]
-    [Area("admin")]
+    [Area("Admin")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

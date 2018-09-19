@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using kewcms.Areas.Admin.Models;
@@ -11,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using kewcms.Data;
 using kewcms.Services;
+using Microsoft.Extensions.FileProviders;
+using UEditor.Core;
+using Microsoft.AspNetCore.Http;
 
 namespace kewcms {
     public class Startup {
@@ -59,8 +63,8 @@ namespace kewcms {
                 //options.Cookie.Name = "YourAppCookieName";//cookied的名称. 默认为AspNetCore.Cookies.
                 options.Cookie.HttpOnly = true;//是否拒绝cookie从客户端脚本访问.默认为true.
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);//Cookie保持有效的时间60分。//TimeSpan.FromDays(150);
-                options.LoginPath = "/Account/Login";//在进行登录时自动重定向。
-                options.LogoutPath = "/Account/Logout";//在进行注销时自动重定向。
+                options.LoginPath = "/Admin/Account/Login";//在进行登录时自动重定向。
+                options.LogoutPath = "/Admin/Account/Logout";//在进行注销时自动重定向。
                 //options.AccessDeniedPath = "/Account/AccessDenied"; //当用户没有授权检查时将被重定向。
                 //options.SlidingExpiration = true;//当TRUE时，新cookie将在当前cookie超过到期窗口一半时发出新的到期时间。默认为true。
                 // Requires `using Microsoft.AspNetCore.Authentication.Cookies;`
@@ -70,6 +74,9 @@ namespace kewcms {
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            //Ueditor
+            services.AddUEditorService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,6 +93,18 @@ namespace kewcms {
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            //配置Ueditor静态资源文件夹
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "upload")),
+                RequestPath = "/upload",
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=36000");
+                }
+            });
 
             app.UseMvc(routes => {
                 routes.MapRoute(
