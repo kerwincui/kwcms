@@ -32,10 +32,9 @@
                                 <td>@Html.DisplayFor(modelItem => item.CallIndex)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                                     <form asp-action="Delete">
-                                        <input type="hidden" asp-for="@item.Id" />
-                                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">编辑</a> &nbsp;&nbsp;
+                                        <input class="btn btn-danger" type="submit" value="删除" />
                                     </form>
                                 </td>
                             </tr>

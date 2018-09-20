@@ -37,7 +37,8 @@ jQuery(function() {
     });
 
     // 当有文件添加进来的时候
-    uploader.on( 'fileQueued', function( file ) {
+    uploader.on('fileQueued', function (file) {
+        $("#sourcePic").hide();
         var $li = $(
                 '<div id="' + file.id + '" class="file-item thumbnail">' +
                     '<img>' +
@@ -75,8 +76,10 @@ jQuery(function() {
     });
 
     // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-    uploader.on( 'uploadSuccess', function( file ) {
-    	$('#' + file.id).addClass('upload-state-done');
+    uploader.on( 'uploadSuccess', function( file,response ) {
+        $('#' + file.id).addClass('upload-state-done');
+        //设置表单的值
+        $("#imgUrl").val(response.url);
     });
 
     // 文件上传失败，现实上传出错。

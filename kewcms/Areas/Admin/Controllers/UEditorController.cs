@@ -12,9 +12,11 @@ using UEditor.Core.Handlers;
 
 namespace kewcms.Areas.Admin.Controllers
 {
+
     [Area("Admin")]
     public class UEditorController : Controller
     {
+
         private readonly UEditorService ueditorService;
         private readonly IHostingEnvironment hostingEnvironment;
 
@@ -37,8 +39,10 @@ namespace kewcms.Areas.Admin.Controllers
         {
             var result = new UploadResult();
 
-            foreach (var item in files.Files) {
-                string localPath = hostingEnvironment.ContentRootPath+ "/upload/image/"+DateTime.Now.ToString("yyyyMMdd")+"/";
+            foreach (var item in files.Files)
+            {
+                string path= "/upload/image/"+ DateTime.Now.ToString("yyyyMMdd") + "/";
+                string localPath = hostingEnvironment.ContentRootPath + path;
                 if (!System.IO.Directory.Exists(localPath))
                 {
                     System.IO.Directory.CreateDirectory(localPath);
@@ -46,9 +50,12 @@ namespace kewcms.Areas.Admin.Controllers
                 var suffix = item.FileName.Substring(item.FileName.LastIndexOf("."));
                 var fileName = Guid.NewGuid().ToString("N") + suffix;
                 item.CopyTo(new FileStream(localPath + fileName, FileMode.Create));
-                result.Url = "/upload/"+fileName;
+                result.Url = path + fileName;
                 result.OriginFileName = item.FileName;
             }
             return Json(result);
         }
+
+    }
+
 }

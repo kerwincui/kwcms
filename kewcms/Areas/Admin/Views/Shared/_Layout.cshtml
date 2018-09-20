@@ -175,7 +175,7 @@
                             <form asp-area="Adminuu" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
 
                                 <a asp-area="admin" asp-controller="Manage" asp-action="Index" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <img src="~/lib/adminex/images/photos/user-avatar.png" alt="" />
+                                    <img src="@UserManager.GetUserAsync(User).Result.Pic" alt="头像" />
                                     @UserManager.GetUserName(User)
                                     <span class="caret"></span>
                                 </a>

@@ -30,8 +30,20 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">头像</label>
                             <div class="col-md-6">
-                                <input type="text" asp-for="Pic" class="form-control" placeholder="">
-                                <span asp-validation-for="Pic" class="text-danger"></span>
+
+                                <!--dom结构部分-->
+                                <div id="uploader-demo">
+                                    <!--用来存放item-->
+                                    <div id="fileList" class="uploader-list">
+                                        @if (!string.IsNullOrWhiteSpace(Model.Pic))
+                                        {
+                                            <img src='@Model.Pic' style='max-height: 200px; margin: 10px 0;' id="sourcePic" />
+                                        }
+                                    </div>
+                                    <div id="filePicker">选择图片</div>
+                                </div>
+                                <input type='hidden' asp-for="Pic" id="imgUrl" />
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -82,4 +94,8 @@
 </div>
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+    <!--webuploader-->
+    <script type="text/javascript" src="~/lib/ueditor/third-party/jquery-1.10.2.min.js"></script>
+    <script src="~/lib/ueditor/third-party/webuploader/webuploader.min.js"></script>
+    <script src="~/lib/ueditor/third-party/webuploader/webupload-pic.js"></script>
 }
