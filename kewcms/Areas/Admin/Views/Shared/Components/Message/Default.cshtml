@@ -1,0 +1,24 @@
+﻿@model IEnumerable<kewcms.Areas.Admin.Models.Feedback>
+
+<li class="">
+    <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
+        <i class="fa fa-envelope-o"></i>
+        <span class="badge">@Model.Count()</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-head pull-right">
+        <h5 class="title">留言</h5>
+
+        <ul class="dropdown-list normal-list">
+            @foreach (var item in Model) {
+                <li class="new">
+                    <a asp-area="Admin" asp-controller="Feedback" asp-action="Edit" asp-route-id="@item.Id" >
+                        <span class="label label-danger"><i class="fa fa-bolt"></i></span>
+                        <span class="name">@item.Title </span>
+                        <em class="small">@item.AddTime</em>
+                    </a>
+                </li>
+            }
+            <li class="new"><a asp-area="Admin" asp-controller="Feedback" asp-action="Index">查看所有留言</a></li>
+        </ul>
+    </div>
+</li>
