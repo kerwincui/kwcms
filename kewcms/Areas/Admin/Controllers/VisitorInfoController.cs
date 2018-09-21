@@ -13,17 +13,17 @@ namespace kewcms.Areas.Admin.Controllers
     [Area("Admin")]
     public class VisitorInfoController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public VisitorInfoController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: Admin/VisitorInfoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.VisitorInfos.ToListAsync());
+            return View(await context.VisitorInfos.ToListAsync());
         }
 
         // POST: Admin/VisitorInfoes/Create
@@ -35,8 +35,8 @@ namespace kewcms.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(visitorInfo);
-                await _context.SaveChangesAsync();
+                context.Add(visitorInfo);
+                await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(visitorInfo);

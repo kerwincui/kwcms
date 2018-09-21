@@ -29,20 +29,21 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>@Html.DisplayFor(modelItem => item.Pic)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.RealName)</td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                        <form asp-action="Delete">
-                                            <input type="hidden" asp-for="@item.Id" />
-                                            <input type="submit" value="Delete" class="btn btn-default" /> |
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <img src="@item.Pic" style="max-height: 100px; max-width: 100px;" />
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                <td>@Html.DisplayFor(modelItem => item.RealName)</td>
+                                <td>
+                                    <form asp-action="Delete">
+                                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">编辑</a> &nbsp;&nbsp;
+                                        <input class="btn btn-danger" type="submit" value="删除" />
+                                    </form>
+                                   </td>
+                            </tr>
                             }
                         </tbody>
                     </table>

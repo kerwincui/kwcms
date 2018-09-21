@@ -13,17 +13,17 @@ namespace kewcms.Areas.Admin.Controllers
     [Area("Admin")]
     public class FriendLinkController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public FriendLinkController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: Admin/FriendLink
         public async Task<IActionResult> Index()
         {
-            return View(await _context.FriendLinks.ToListAsync());
+            return View(await context.FriendLinks.ToListAsync());
         }
 
         // GET: Admin/FriendLink/Edit/5
@@ -34,7 +34,7 @@ namespace kewcms.Areas.Admin.Controllers
                 return View(new FriendLink());
             }
 
-            var friendLink = await _context.FriendLinks.FindAsync(id);
+            var friendLink = await context.FriendLinks.FindAsync(id);
             if (friendLink == null)
             {
                 return NotFound();
@@ -61,13 +61,13 @@ namespace kewcms.Areas.Admin.Controllers
                     if (id == 0)
                     {
                         friendLink.AddTime = DateTime.Now;
-                        _context.Add(friendLink);
+                        context.Add(friendLink);
                     }
                     else
                     {
-                        _context.Update(friendLink);
+                        context.Update(friendLink);
                     }
-                    await _context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -90,15 +90,15 @@ namespace kewcms.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var friendLink = await _context.FriendLinks.FindAsync(id);
-            _context.FriendLinks.Remove(friendLink);
-            await _context.SaveChangesAsync();
+            var friendLink = await context.FriendLinks.FindAsync(id);
+            context.FriendLinks.Remove(friendLink);
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool FriendLinkExists(int id)
         {
-            return _context.FriendLinks.Any(e => e.Id == id);
+            return context.FriendLinks.Any(e => e.Id == id);
         }
     }
 }

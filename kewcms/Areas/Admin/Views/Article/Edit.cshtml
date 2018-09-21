@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form">
+                    <form asp-action="Edit" method="post" class="form-horizontal adminex-form" id="articleForm">
                         <input type="hidden" asp-for="Id" />
                         <div class="form-group">
                             <label class="control-label col-md-3" asp-for="Title"></label>
@@ -33,8 +33,19 @@
                         <div class="form-group">
                             <label class="control-label col-md-3" asp-for="ImgUrl"></label>
                             <div class="col-md-6">
-                                <input type="text" asp-for="ImgUrl" class="form-control" placeholder="">
-                                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+                               
+                                <!--dom结构部分-->
+                                <div id="uploader-demo">
+                                    <!--用来存放item-->
+                                    <div id="fileList" class="uploader-list">
+                                        @if (!string.IsNullOrWhiteSpace(Model.ImgUrl)) { 
+                                               <img src='@Model.ImgUrl' style='max-height: 200px; margin: 10px 0;' id="sourcePic" />
+                                        }
+                                    </div>
+                                        <div id="filePicker">选择图片</div>
+                                </div>
+                                <input type='hidden' asp-for="ImgUrl" id="imgUrl" />
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -47,8 +58,10 @@
                         <div class="form-group">
                             <label class="control-label col-md-3" asp-for="Content"></label>
                             <div class="col-md-6">
-                                <input type="text" asp-for="Content" class="form-control" placeholder="">
-                                <span asp-validation-for="Content" class="text-danger"></span>
+                                <!--使用Ueditor-->
+                                <textarea id="container" asp-for="Content" type="text/plain">
+                                    欢迎使用Ueditor.Core
+                                </textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -134,4 +147,16 @@
 </div>
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+    <!--UEditor-->
+    <script src="~/lib/ueditor/ueditor.config.js"></script>
+    <script src="~/lib/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript">
+        var ue = UE.getEditor('container', {
+            initialFrameHeight: 300
+        });
+    </script>
+    <!--webuploader-->
+    <script type="text/javascript" src="~/lib/ueditor/third-party/jquery-1.10.2.min.js"></script>
+    <script src="~/lib/ueditor/third-party/webuploader/webuploader.min.js"></script>
+    <script src="~/lib/ueditor/third-party/webuploader/webupload-pic.js"></script>
 }

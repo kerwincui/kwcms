@@ -13,17 +13,17 @@ namespace kewcms.Areas.Admin.Controllers
     [Area("Admin")]
     public class ArticleCategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public ArticleCategoryController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: Admin/ArticleCategory
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ArticleCategories.ToListAsync());
+            return View(await context.ArticleCategories.ToListAsync());
         }
 
         // GET: Admin/ArticleCategory/Edit/5
@@ -34,7 +34,7 @@ namespace kewcms.Areas.Admin.Controllers
                 return View(new ArticleCategory());
             }
 
-            var articleCategory = await _context.ArticleCategories.FindAsync(id);
+            var articleCategory = await context.ArticleCategories.FindAsync(id);
             if (articleCategory == null)
             {
                 return NotFound();
@@ -59,12 +59,12 @@ namespace kewcms.Areas.Admin.Controllers
                 try
                 {
                     if (id == 0) {
-                        _context.Add(articleCategory);
+                        context.Add(articleCategory);
                     }
                     else {
-                        _context.Update(articleCategory);
+                        context.Update(articleCategory);
                     }
-                    await _context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -87,15 +87,15 @@ namespace kewcms.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var articleCategory = await _context.ArticleCategories.FindAsync(id);
-            _context.ArticleCategories.Remove(articleCategory);
-            await _context.SaveChangesAsync();
+            var articleCategory = await context.ArticleCategories.FindAsync(id);
+            context.ArticleCategories.Remove(articleCategory);
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ArticleCategoryExists(int id)
         {
-            return _context.ArticleCategories.Any(e => e.Id == id);
+            return context.ArticleCategories.Any(e => e.Id == id);
         }
     }
 }

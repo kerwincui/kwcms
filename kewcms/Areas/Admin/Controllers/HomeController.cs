@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Win32;
 using System.Diagnostics;
 using kewcms.Data;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 
 namespace kewcms.Areas.Admin.Controllers
@@ -21,11 +22,13 @@ namespace kewcms.Areas.Admin.Controllers
 
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ApplicationDbContext dbContext;
-
-        public HomeController(UserManager<ApplicationUser> _userManager, ApplicationDbContext _dbContext)
+        private readonly IHostingEnvironment hostingEnvironment;
+        
+        public HomeController(UserManager<ApplicationUser> userMgr, ApplicationDbContext dbCxt, IHostingEnvironment env)
         {
-            userManager = _userManager;
-            dbContext = _dbContext;
+            userManager = userMgr;
+            dbContext = dbCxt;
+            hostingEnvironment = env;
         }
 
         public IActionResult Index()
@@ -50,7 +53,7 @@ namespace kewcms.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult BaseInfo(BaseInfo info)
         {
-            XDocument site = XDocument.Load(AppContext.BaseDirectory + "/site.xml");
+            XDocument site = XDocument.Load(hostingEnvironment.ContentRootPath + "/site.xml");
             XElement siteInfo = site.Element("site");
             siteInfo.Element("domain").Value = info.Domain ?? "";
             siteInfo.Element("name").Value = info.Name ?? "";
@@ -77,7 +80,7 @@ namespace kewcms.Areas.Admin.Controllers
         public BaseInfo GetSiteInfo()
         {
             BaseInfo info = new BaseInfo();
-            XDocument site = XDocument.Load(AppContext.BaseDirectory + "/site.xml");
+            XDocument site = XDocument.Load(hostingEnvironment.ContentRootPath + "/site.xml");
             XElement siteInfo = site.Element("site");
             if (siteInfo != null)
             {

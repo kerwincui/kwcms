@@ -13,17 +13,17 @@ namespace kewcms.Areas.Admin.Controllers
     [Area("Admin")]
     public class ArticleController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public ArticleController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: Admin/Articles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Articles.ToListAsync());
+            return View(await context.Articles.ToListAsync());
         }
 
         // GET: Admin/Articles/Edit/5
@@ -33,7 +33,7 @@ namespace kewcms.Areas.Admin.Controllers
                 return View(new Article());
             }
 
-            var article = await _context.Articles.FindAsync(id);
+            var article = await context.Articles.FindAsync(id);
             if (article == null)
             {
                 return NotFound();
@@ -60,13 +60,13 @@ namespace kewcms.Areas.Admin.Controllers
                     if (id == 0) {
                         article.Author = User.Identity.Name;
                         article.AddTime = DateTime.Now;
-                        _context.Add(article);
+                        context.Add(article);
                     }
                     else {
                         article.UpdateTime = DateTime.Now;
-                        _context.Update(article);
+                        context.Update(article);
                     }
-                    await _context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -89,19 +89,19 @@ namespace kewcms.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
+            var article = await context.Articles.FindAsync(id);
             if (article == null)
             {
                 return NotFound();
             }
-            _context.Articles.Remove(article);
-            await _context.SaveChangesAsync();
+            context.Articles.Remove(article);
+            await context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ArticleExists(int id)
         {
-            return _context.Articles.Any(e => e.Id == id);
+            return context.Articles.Any(e => e.Id == id);
         }
     }
 }

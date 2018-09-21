@@ -25,6 +25,8 @@
     <!--Morris Chart CSS -->
     <link rel="stylesheet" src="~/lib/adminex/js/morris-chart/morris.css">
 
+    <!--webuploader-->
+    <link href="~/lib/ueditor/third-party/webuploader/webuploader.css" rel="stylesheet">
 
 
     <!--common-->
@@ -142,38 +144,20 @@
                 <!--notification menu start -->
                 <div class="menu-right">
                     <ul class="notification-menu">
-                        <li class="">
-                            <a href="#" class="btn btn-default dropdown-toggle info-number" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge">4</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-head pull-right">
-                                <h5 class="title">留言</h5>
-                                
-                                <ul class="dropdown-list normal-list">
-                                    <li class="new">
-                                        <a href="">
-                                            <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                            <span class="name">Server #1 overloaded.  </span>
-                                            <em class="small">34 mins</em>
-                                        </a>
-                                    </li>
-                                    <li class="new">
-                                        <a href="">
-                                            <span class="label label-danger"><i class="fa fa-bolt"></i></span>
-                                            <span class="name">Server #3 overloaded.  </span>
-                                            <em class="small">1 hrs</em>
-                                        </a>
-                                    </li>
-                                    <li class="new"><a asp-area="Admin" asp-controller="Feedback" asp-action="Index">查看所有留言</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        @await Component.InvokeAsync("Message")
                         <li>
-                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                            <form asp-area="Admin" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
 
                                 <a asp-area="admin" asp-controller="Manage" asp-action="Index" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <img src="~/lib/adminex/images/photos/user-avatar.png" alt="" />
+                                    @if (string.IsNullOrWhiteSpace(@UserManager.GetUserAsync(User).Result.Pic))
+                                    {
+                                        <img src="~/lib/adminex/images/photos/user3.png" alt="头像" />
+
+                                    }
+                                    else
+                                    {
+                                        <img src="@UserManager.GetUserAsync(User).Result.Pic" alt="头像" />
+                                    }
                                     @UserManager.GetUserName(User)
                                     <span class="caret"></span>
                                 </a>
@@ -227,7 +211,7 @@
     <script src="~/lib/adminex/js/calendar/clndr.js"></script>
     <script src="~/lib/adminex/js/calendar/evnt.calendar.init.js"></script>
     <script src="~/lib/adminex/js/calendar/moment-2.2.1.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <!--common scripts for all pages-->
     <script src="~/lib/adminex/js/scripts.js"></script>
     <!--Dashboard Charts-->
