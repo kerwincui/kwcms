@@ -1,5 +1,7 @@
-#´´½¨¾µÏñ
-docker build -t aspnetcoretodo .      
+#1.åˆ‡æ¢åˆ°é¡¹ç›®ç›®å½•
 
-#ÔËĞĞÈİÆ÷
-docker run --name aspnetcoretodo_sample --rm -it -p 8080:80 aspnetcoretodo
+#2.åˆ›å»ºé•œåƒ
+docker build -t kewcms -f ./docker/Dockerfile .      
+
+#3.è¿è¡Œå®¹å™¨
+docker run --name kewcms --rm -it -p 5000:5000 kewcms

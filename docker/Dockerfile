@@ -1,13 +1,18 @@
 FROM microsoft/dotnet:2.1-sdk AS build
-COPY ../kewcms/*.csproj ./app/kewcms/
-WORKDIR /app/kewcms
+WORKDIR /app
+
+# Copy csproj and restore as distinct layers
+COPY *.sln .
+COPY ./kewcms/*.csproj ./kewcms/
 RUN dotnet restore
 
-COPY ../kewcms/. ./
-RUN dotnet publish -o out /p:PublishWithAspNetCoreTargetManifest="false"
+# Copy everything else and build
+COPY ./kewcms/. ./kewcms/
+WORKDIR /app/kewcms
+RUN dotnet publish -c Release -o out
 
-FROM microsoft/dotnet:2.1-runtime AS runtime
-ENV ASPNETCORE_URLS http://+:5000
+# Build runtime image   
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
 WORKDIR /app
-COPY --from=build /app/kewcms/out ./
+COPY --from=build /app/out ./
 ENTRYPOINT ["dotnet", "kewcms.dll"]
