@@ -1,0 +1,5 @@
+#创建镜像
+docker build -t aspnetcoretodo .      
+
+#运行容器
+docker run --name aspnetcoretodo_sample --rm -it -p 8080:80 aspnetcoretodo
