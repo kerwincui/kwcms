@@ -1,0 +1,7 @@
+#1.切换到项目目录
+
+#2.创建镜像
+docker build -t kewcms -f ./docker/Dockerfile .      
+
+#3.运行容器
+docker run --name kewcms --rm -it -p 5000:5000 kewcms

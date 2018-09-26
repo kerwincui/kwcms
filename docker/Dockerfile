@@ -1,6 +1,18 @@
-FROM kerwincui/jexus:5.8.2.21
+FROM microsoft/dotnet:2.1-sdk AS build
+WORKDIR /app
 
-COPY ./default /usr/jexus/siteconf/default
-COPY ./web/ /var/www/default/
+# Copy csproj and restore as distinct layers
+COPY *.sln .
+COPY ./kewcms/*.csproj ./kewcms/
+RUN dotnet restore
 
-EXPOSE 80
+# Copy everything else and build
+COPY ./kewcms/. ./kewcms/
+WORKDIR /app/kewcms
+RUN dotnet publish -c Release -o out
+
+# Build runtime image   
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
+WORKDIR /app
+COPY --from=build /app/out ./
+ENTRYPOINT ["dotnet", "kewcms.dll"]
