@@ -13,6 +13,7 @@ RUN dotnet publish -c Release -o out
 
 # Build runtime image   
 FROM microsoft/dotnet:2.1-aspnetcore-runtime AS runtime
-WORKDIR /app
-COPY --from=build /app/out ./
+WORKDIR /app/kewcms
+COPY --from=build /app/kewcms/out ./
+COPY ./upload/ ./
 ENTRYPOINT ["dotnet", "kewcms.dll"]
